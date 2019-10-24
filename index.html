@@ -9,7 +9,19 @@
 
 <body>
     <div id="app">
-
+        <div v-if="!done">
+            <form v-on:submit.prevent="getAnswers">
+            <input type="text" :placeholder="blank" v-for="(blank, index) in madlib.blanks" v-model="answers[index]">
+            <button type="submit">Submit Answers</button>
+            </form>
+        </div>
+        <div v-if="done">
+            <h1>{{madlib.title}}</h1>
+            <div v-for="(answer, index) in answers">
+                <p>{{madlib.value[index]}}</p>
+                <p>{{answer}}</p>
+            </div>
+        </div>
     </div>
     <footer>
         <a href="https://github.com/mmthornt/VueCreativeProject.git">Github</a>
