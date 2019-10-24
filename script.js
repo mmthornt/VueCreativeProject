@@ -3,6 +3,7 @@ let app = new Vue({
    el: '#app',
    data: {
       current: null,
+      madlib: null,
    },
    methods: {
       async currentHours() {
@@ -10,8 +11,8 @@ let app = new Vue({
             var url = "https://madlibz.herokuapp.com/api/random?minlength=5&maxlength=25";
             let response = await axios.get(url);
 
-            
-            console.log(response);
+            this.madlib = response.data
+            console.log(this.madlib);
             this.current = response.data;
          }
          catch (error) {
