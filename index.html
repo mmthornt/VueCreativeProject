@@ -1,13 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Vue Creative Project</title>
+    <link rel="stylesheet" href="/VueCreativeProject/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/VueCreativeProject/text.scss">
+    <title>Madlibz Generator</title>
 </head>
 
 <body>
+    <div id="table">
+        <div id="centeralign">
+            <h1>MADLIBZ</h1>
+        </div>
+        
+    </div>
+    
+    <script>
+        function typeEffect(element, speed) {
+            var text = element.innerHTML;
+            element.innerHTML = "";
+
+            var i = 0;
+            var timer = setInterval(function() {
+                if (i < text.length) {
+                    element.append(text.charAt(i));
+                    i++;
+                }
+                else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+
+        // application
+        var speed = 500;
+        var h1 = document.querySelector('h1');
+        var p = document.querySelector('p');
+        var delay = h1.innerHTML.length * speed + speed;
+
+        // type affect to header
+        typeEffect(h1, speed);
+    </script>
+
+
+
+
+
+
     <div id="app">
         <div v-if="!done">
             <form v-on:submit.prevent="getAnswers">
@@ -23,12 +63,17 @@
             </div>
         </div>
     </div>
-    <footer>
-        <a href="https://github.com/mmthornt/VueCreativeProject.git">Github</a>
-    </footer>
+
+    <div class="footer">
+        <a href="https://github.com/mmthornt/VueCreativeProject.git" target="_blank"><span class="fa fa-github" style="font-size: 24px"></span>&nbsp;&nbsp;GitHub</a>
+    </div>
+
+
+
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
